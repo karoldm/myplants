@@ -7,6 +7,8 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData media = MediaQuery.of(context);
+
     return (Scaffold(
         body: Container(
             alignment: Alignment.center,
@@ -16,8 +18,8 @@ class SplashScreen extends StatelessWidget {
                     fit: BoxFit.cover)),
             child: Container(
               alignment: Alignment.center,
-              height: 150,
-              width: 250,
+              height: media.size.height * 0.2,
+              width: media.size.width * 0.7,
               decoration: const BoxDecoration(
                   color: ColorThemes.darkGreen,
                   borderRadius: BorderRadius.all(Radius.circular(12)),
