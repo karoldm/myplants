@@ -10,13 +10,13 @@ class PlantWaterCard extends StatefulWidget {
   PlantWaterCard({super.key, required this.plant});
 
   @override
-  State<StatefulWidget> createState() => PlantWaterCardState(plant: plant);
+  State<StatefulWidget> createState() => _PlantWaterCardState(plant: plant);
 }
 
-class PlantWaterCardState extends State<PlantWaterCard> {
+class _PlantWaterCardState extends State<PlantWaterCard> {
   PlantWater plant;
 
-  PlantWaterCardState({required this.plant});
+  _PlantWaterCardState({required this.plant});
 
   bool check = false;
 
@@ -30,7 +30,7 @@ class PlantWaterCardState extends State<PlantWaterCard> {
                 color: ColorThemes.mediumGreen,
                 borderRadius: BorderRadius.all(Radius.circular(8)))
             : const BoxDecoration(
-                color: ColorThemes.gray,
+                color: ColorThemes.grey,
                 borderRadius: BorderRadius.all(Radius.circular(8))),
         child: Row(
           children: [

@@ -26,11 +26,11 @@ class Plant {
 
     map['id'] = id;
     map['especie'] = especie;
-    map['category'] = especie;
-    map['humidity'] = especie;
-    map['sun'] = especie;
-    map['photoPath'] = especie;
-    map['rememberWater'] = especie;
+    map['category'] = category;
+    map['humidity'] = humidity;
+    map['sun'] = sun;
+    map['photoPath'] = photoPath;
+    map['rememberWater'] = rememberWater;
     map['daysWater'] = daysWater.toString();
 
     return map;

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:myplants/screens/home/HomeScreen.dart';
 
 import 'package:myplants/themes/ColorThemes.dart';
 
+import 'package:myplants/screens/home/HomeScreen.dart';
+import 'package:myplants/screens/myplants/MyPlantsScreen.dart';
 import 'package:myplants/screens/splash/SplashScreen.dart';
 
 void main() {
@@ -19,9 +20,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.grey,
       ),
-      home: const HomeScreen(),
+      home: const MyPlantsScreen(),
+      //const HomeScreen(),
       //const SplashScreen(),
     );
   }

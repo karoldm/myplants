@@ -8,7 +8,7 @@ import '../../themes/ColorThemes.dart';
 import 'PlantWaterCard.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         shape: const StadiumBorder(),
-                        backgroundColor: ColorThemes.gray),
+                        backgroundColor: ColorThemes.grey),
                     onPressed: myPlants,
                     child: const Text('Minhas Plantas',
                         style: TextStyle(
@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         shape: const StadiumBorder(),
-                        backgroundColor: ColorThemes.gray),
+                        backgroundColor: ColorThemes.grey),
                     onPressed: newPlant,
                     child: const Icon(
                       Icons.add,
