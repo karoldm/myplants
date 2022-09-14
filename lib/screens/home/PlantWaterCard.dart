@@ -38,28 +38,41 @@ class PlantWaterCardState extends State<PlantWaterCard> {
               plant.photoPath,
               width: 60,
             ),
-            Column(
-              children: [
-                Text(plant.especie,
-                    style: const TextStyle(
-                        color: ColorThemes.dark,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14)),
-                Text(plant.category,
-                    style: const TextStyle(
-                        color: ColorThemes.dark,
-                        fontWeight: FontWeight.w200,
-                        fontSize: 8))
-              ],
+            const SizedBox(
+              width: 10,
             ),
-            Checkbox(
-                value: plant.watered,
-                onChanged: (bool? value) {
-                  setState(() {
-                    plant.setWatered(value!);
-                  });
-                  //mudar lista de plantas regadas no banco
-                }),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(plant.especie,
+                      style: const TextStyle(
+                          color: ColorThemes.dark,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16)),
+                  Text(plant.category,
+                      style: const TextStyle(
+                          color: ColorThemes.dark,
+                          fontWeight: FontWeight.w200,
+                          fontSize: 12))
+                ],
+              ),
+            ),
+            Transform.scale(
+              scale: 1.25,
+              child: Checkbox(
+                  shape: CircleBorder(),
+                  checkColor: ColorThemes.light,
+                  activeColor: ColorThemes.darkGreen,
+                  value: plant.watered,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      plant.setWatered(value!);
+                    });
+                    //mudar lista de plantas regadas no banco
+                  }),
+            )
           ],
         ));
   }
