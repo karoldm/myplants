@@ -19,7 +19,7 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
   List<Plant> plants = [
     const Plant(
         id: 0,
-        especie: 'rosa azul',
+        especie: 'rosa vermelha',
         category: 'rosas',
         photoPath: 'assets/images/defaultPlantImage.png',
         sun: 3,
@@ -64,7 +64,7 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
         daysWater: []),
     const Plant(
         id: 6,
-        especie: 'rosa vermelha',
+        especie: 'rosa azul',
         category: 'rosas',
         photoPath: 'assets/images/defaultPlantImage.png',
         sun: 3,
@@ -74,6 +74,16 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
   ];
 
   List<Plant> plantsToDisplay = [];
+
+  final Map<String, dynamic> themeRecentes = {
+    'background': ColorThemes.darkGreen,
+    'fontColor': ColorThemes.light
+  };
+
+  final Map<String, dynamic> themeAZ = {
+    'background': ColorThemes.lightGreen,
+    'fontColor': ColorThemes.dark
+  };
 
   @override
   void initState() {
@@ -102,7 +112,7 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
                             shape: const StadiumBorder(),
                             backgroundColor: ColorThemes.grey),
                         onPressed: back,
-                        child: const Icon(Icons.arrow_back,
+                        child: const Icon(Icons.home_outlined,
                             color: ColorThemes.dark, size: 25)),
                     Container(
                       padding: const EdgeInsets.only(left: 2),
@@ -152,18 +162,29 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20, 30, 0, 0),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        themeRecentes['background'] = ColorThemes.darkGreen;
+                        themeRecentes['fontColor'] = ColorThemes.light;
+                        themeAZ['background'] = ColorThemes.lightGreen;
+                        themeAZ['fontColor'] = ColorThemes.dark;
+                        plantsToDisplay.clear();
+                        for (var p in plants) {
+                          plantsToDisplay.add(p);
+                        }
+                      });
+                    },
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
                       padding: const EdgeInsets.symmetric(
                           vertical: 0, horizontal: 16),
-                      backgroundColor: ColorThemes.darkGreen,
+                      backgroundColor: themeRecentes['background'],
                       shape: const StadiumBorder(),
                     ),
-                    child: const Text(
+                    child: Text(
                       'Recentes',
                       style: TextStyle(
-                          color: ColorThemes.light,
+                          color: themeRecentes['fontColor'],
                           fontSize: 16,
                           fontWeight: FontWeight.w300),
                     ),
@@ -172,18 +193,33 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(15, 30, 0, 0),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        themeRecentes['background'] = ColorThemes.lightGreen;
+                        themeRecentes['fontColor'] = ColorThemes.dark;
+                        themeAZ['background'] = ColorThemes.darkGreen;
+                        themeAZ['fontColor'] = ColorThemes.light;
+
+                        plantsToDisplay.clear();
+                        for (var p in plants) {
+                          plantsToDisplay.add(p);
+                        }
+
+                        plantsToDisplay
+                            .sort((p1, p2) => p1.especie.compareTo(p2.especie));
+                      });
+                    },
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
                       padding: const EdgeInsets.symmetric(
                           vertical: 0, horizontal: 16),
-                      backgroundColor: ColorThemes.lightGreen,
+                      backgroundColor: themeAZ['background'],
                       shape: const StadiumBorder(),
                     ),
-                    child: const Text(
+                    child: Text(
                       'A-Z',
                       style: TextStyle(
-                          color: ColorThemes.dark,
+                          color: themeAZ['fontColor'],
                           fontSize: 16,
                           fontWeight: FontWeight.w300),
                     ),
