@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../models/PlantWater.dart';
-
 import 'package:myplants/themes/FontThemes.dart';
 import '../../themes/ColorThemes.dart';
+
+import '../../models/PlantWater.dart';
 
 import 'PlantWaterCard.dart';
 
@@ -15,37 +15,73 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<dynamic> plantsWater = [
+    PlantWater(
+      watered: false,
+      id: 0,
+      especie: 'rosa branca',
+      category: 'rosas',
+      photoPath: 'assets/images/defaultPlantImage.png',
+    ),
+    PlantWater(
+        watered: true,
+        id: 1,
+        especie: 'rosa vermelha',
+        category: 'rosas',
+        photoPath: 'assets/images/defaultPlantImage.png'),
+    PlantWater(
+        watered: false,
+        id: 2,
+        especie: 'rosa azul',
+        category: 'rosas',
+        photoPath: 'assets/images/defaultPlantImage.png'),
+    PlantWater(
+        watered: false,
+        id: 3,
+        especie: 'rosa amarela',
+        category: 'rosas',
+        photoPath: 'assets/images/defaultPlantImage.png'),
+  ];
+
+  List<PlantWater> plantsWaterToDisplay = [];
+
+  @override
+  void initState() {
+    //inserindo plantas que já foram regadas no final da lista
+    for (PlantWater p in plantsWater) {
+      if (!p.watered) {
+        plantsWaterToDisplay.add(p);
+      }
+    }
+    for (PlantWater p in plantsWater) {
+      if (p.watered) {
+        plantsWaterToDisplay.add(p);
+      }
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     MediaQueryData media = MediaQuery.of(context);
 
-    List<dynamic> plantsWater = [
-      PlantWater(
-        watered: false,
-        id: 0,
-        especie: 'rosa azul',
-        category: 'rosas',
-        photoPath: 'assets/images/defaultPlantImage.png',
-      ),
-      PlantWater(
-          watered: false,
-          id: 1,
-          especie: 'rosa azul',
-          category: 'rosas',
-          photoPath: 'assets/images/defaultPlantImage.png'),
-      PlantWater(
-          watered: false,
-          id: 2,
-          especie: 'rosa azul',
-          category: 'rosas',
-          photoPath: 'assets/images/defaultPlantImage.png'),
-      PlantWater(
-          watered: true,
-          id: 3,
-          especie: 'rosa azul',
-          category: 'rosas',
-          photoPath: 'assets/images/defaultPlantImage.png'),
-    ];
+    void reorderList(int id, bool checked) {
+      setState(() {
+        PlantWater pChecked;
+        pChecked = plantsWaterToDisplay.firstWhere((p) => p.id == id);
+        plantsWaterToDisplay.removeWhere((p) => p.id == id);
+
+        //inserindo planta regada no final
+        if (checked) {
+          plantsWaterToDisplay.add(pChecked);
+        }
+
+        //inserindo planta não regada no inicio
+        else {
+          plantsWaterToDisplay.insert(0, pChecked);
+        }
+      });
+    }
 
     return Scaffold(
         appBar: AppBar(
@@ -107,8 +143,12 @@ class _HomeScreenState extends State<HomeScreen> {
             SliverList(
                 delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
-              return PlantWaterCard(plant: plantsWater[index]);
-            }, childCount: plantsWater.length))
+              print(plantsWaterToDisplay[index].especie);
+              return PlantWaterCard(
+                  plant: plantsWaterToDisplay[index],
+                  callback: reorderList,
+                  key: UniqueKey());
+            }, childCount: plantsWaterToDisplay.length))
           ],
         ));
   }

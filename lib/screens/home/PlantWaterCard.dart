@@ -6,17 +6,20 @@ import '../../models/PlantWater.dart';
 
 class PlantWaterCard extends StatefulWidget {
   PlantWater plant;
+  final void Function(int, bool) callback;
 
-  PlantWaterCard({super.key, required this.plant});
+  PlantWaterCard({super.key, required this.plant, required this.callback});
 
   @override
-  State<StatefulWidget> createState() => _PlantWaterCardState(plant: plant);
+  State<StatefulWidget> createState() =>
+      _PlantWaterCardState(plant: plant, callback: callback);
 }
 
 class _PlantWaterCardState extends State<PlantWaterCard> {
   PlantWater plant;
+  final void Function(int, bool) callback;
 
-  _PlantWaterCardState({required this.plant});
+  _PlantWaterCardState({required this.plant, required this.callback});
 
   bool check = false;
 
@@ -67,10 +70,8 @@ class _PlantWaterCardState extends State<PlantWaterCard> {
                   activeColor: ColorThemes.darkGreen,
                   value: plant.watered,
                   onChanged: (bool? value) {
-                    setState(() {
-                      plant.setWatered(value!);
-                    });
-                    //mudar lista de plantas regadas no banco
+                    plant.setWatered(value!);
+                    callback(plant.id!, value);
                   }),
             )
           ],

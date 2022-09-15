@@ -22,8 +22,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: const MyPlantsScreen(),
-      //const HomeScreen(),
+      home:
+          //const MyPlantsScreen(),
+          HomeScreen(),
       //const SplashScreen(),
     );
   }
