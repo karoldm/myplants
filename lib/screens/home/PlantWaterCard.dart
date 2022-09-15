@@ -28,13 +28,16 @@ class _PlantWaterCardState extends State<PlantWaterCard> {
     return Container(
         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-        decoration: plant.watered
-            ? const BoxDecoration(
-                color: ColorThemes.mediumGreen,
-                borderRadius: BorderRadius.all(Radius.circular(8)))
-            : const BoxDecoration(
-                color: ColorThemes.grey,
-                borderRadius: BorderRadius.all(Radius.circular(8))),
+        decoration: BoxDecoration(
+            color: plant.watered ? ColorThemes.mediumGreen : ColorThemes.grey,
+            boxShadow: [
+              BoxShadow(
+                color: ColorThemes.dark.withOpacity(0.5),
+                blurRadius: 6,
+                offset: const Offset(4, 4),
+              )
+            ],
+            borderRadius: const BorderRadius.all(Radius.circular(8))),
         child: Row(
           children: [
             Image.asset(
