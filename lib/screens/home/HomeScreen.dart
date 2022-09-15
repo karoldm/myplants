@@ -41,21 +41,53 @@ class _HomeScreenState extends State<HomeScreen> {
         especie: 'rosa amarela',
         category: 'rosas',
         photoPath: 'assets/images/defaultPlantImage.png'),
+    PlantWater(
+        watered: false,
+        id: 4,
+        especie: 'rosa amarela',
+        category: 'rosas',
+        photoPath: 'assets/images/defaultPlantImage.png'),
+    PlantWater(
+        watered: false,
+        id: 5,
+        especie: 'rosa amarela',
+        category: 'rosas',
+        photoPath: 'assets/images/defaultPlantImage.png'),
+    PlantWater(
+        watered: false,
+        id: 6,
+        especie: 'rosa amarela',
+        category: 'rosas',
+        photoPath: 'assets/images/defaultPlantImage.png'),
+    PlantWater(
+        watered: false,
+        id: 7,
+        especie: 'rosa amarela',
+        category: 'rosas',
+        photoPath: 'assets/images/defaultPlantImage.png'),
+    PlantWater(
+        watered: false,
+        id: 8,
+        especie: 'rosa amarela',
+        category: 'rosas',
+        photoPath: 'assets/images/defaultPlantImage.png'),
   ];
 
   List<PlantWater> plantsWaterToDisplay = [];
+  List<PlantWater> plantsWateredToDisplay = [];
 
   @override
   void initState() {
-    //inserindo plantas que já foram regadas no final da lista
+    //plantas ainda nao regadas
     for (PlantWater p in plantsWater) {
       if (!p.watered) {
         plantsWaterToDisplay.add(p);
       }
     }
+    //plantas ja regadas
     for (PlantWater p in plantsWater) {
       if (p.watered) {
-        plantsWaterToDisplay.add(p);
+        plantsWateredToDisplay.add(p);
       }
     }
     super.initState();
@@ -68,17 +100,19 @@ class _HomeScreenState extends State<HomeScreen> {
     void reorderList(int id, bool checked) {
       setState(() {
         PlantWater pChecked;
-        pChecked = plantsWaterToDisplay.firstWhere((p) => p.id == id);
-        plantsWaterToDisplay.removeWhere((p) => p.id == id);
 
         //inserindo planta regada no final
         if (checked) {
-          plantsWaterToDisplay.add(pChecked);
+          pChecked = plantsWaterToDisplay.firstWhere((p) => p.id == id);
+          plantsWaterToDisplay.removeWhere((p) => p.id == id);
+          plantsWateredToDisplay.add(pChecked);
         }
 
         //inserindo planta não regada no inicio
         else {
-          plantsWaterToDisplay.insert(0, pChecked);
+          pChecked = plantsWateredToDisplay.firstWhere((p) => p.id == id);
+          plantsWateredToDisplay.removeWhere((p) => p.id == id);
+          plantsWaterToDisplay.add(pChecked);
         }
       });
     }
@@ -143,12 +177,20 @@ class _HomeScreenState extends State<HomeScreen> {
             SliverList(
                 delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
-              print(plantsWaterToDisplay[index].especie);
               return PlantWaterCard(
                   plant: plantsWaterToDisplay[index],
                   callback: reorderList,
                   key: UniqueKey());
-            }, childCount: plantsWaterToDisplay.length))
+            }, childCount: plantsWaterToDisplay.length)),
+            SliverList(
+                delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+              if (index == 0) return const SizedBox(height: 50);
+              return PlantWaterCard(
+                  plant: plantsWateredToDisplay[index - 1],
+                  callback: reorderList,
+                  key: UniqueKey());
+            }, childCount: plantsWateredToDisplay.length + 1))
           ],
         ));
   }
