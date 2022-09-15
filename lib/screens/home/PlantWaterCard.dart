@@ -68,7 +68,7 @@ class _PlantWaterCardState extends State<PlantWaterCard> {
             Transform.scale(
               scale: 1.25,
               child: Checkbox(
-                  shape: CircleBorder(),
+                  shape: const CircleBorder(),
                   checkColor: ColorThemes.light,
                   activeColor: ColorThemes.darkGreen,
                   value: plant.watered,

@@ -7,5 +7,6 @@ class ColorThemes {
   static const light = Color(0xffFDFDFD);
   static const dark = Color(0xff3D3D3D);
   static const grey = Color(0xffE8E8E8);
+  static const darkGrey = Color(0xff979797);
   static const red = Color(0xffFF6C6C);
 }
