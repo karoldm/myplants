@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:myplants/models/Plant.dart';
+
 import 'package:myplants/screens/plant/WeekDayButton.dart';
+import 'DeletePlantDialog.dart';
+
 import 'package:myplants/themes/ColorThemes.dart';
 
 class PlantScreen extends StatefulWidget {
@@ -49,10 +52,10 @@ class _PlantScreenState extends State<PlantScreen> {
                           fontSize: 16,
                           fontWeight: FontWeight.w400),
                     ),
-                    const IconButton(
-                      padding: EdgeInsets.all(0),
-                      onPressed: deletePlant,
-                      icon: Icon(Icons.delete,
+                    IconButton(
+                      padding: const EdgeInsets.all(0),
+                      onPressed: () => showDeletePlantDialog(context, plant),
+                      icon: const Icon(Icons.delete,
                           color: ColorThemes.darkGrey, size: 25),
                     )
                   ],
@@ -241,5 +244,3 @@ class _PlantScreenState extends State<PlantScreen> {
 void editPlant() {}
 
 void back() {}
-
-void deletePlant() {}
