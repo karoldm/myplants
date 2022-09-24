@@ -1,15 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:myplants/screens/home/HomeScreen.dart';
+import 'dart:async';
+
 import 'package:myplants/themes/ColorThemes.dart';
 import 'package:myplants/themes/FontThemes.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(
+        const Duration(seconds: 2),
+        () => Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => HomeScreen())));
+  }
 
   @override
   Widget build(BuildContext context) {
     MediaQueryData media = MediaQuery.of(context);
 
-    return (Scaffold(
+    return Scaffold(
         body: Container(
             alignment: Alignment.center,
             decoration: const BoxDecoration(
@@ -38,6 +55,6 @@ class SplashScreen extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     fontSize: 20),
               ),
-            ))));
+            )));
   }
 }

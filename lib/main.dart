@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         '/splash': (context) => const SplashScreen(),
         '/myPlants': (context) => const MyPlantsScreen(),
       },
-      initialRoute: '/home',
+      initialRoute: '/splash',
     );
   }
 }
