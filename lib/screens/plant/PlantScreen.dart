@@ -7,6 +7,8 @@ import 'DeletePlantDialog.dart';
 
 import 'package:myplants/themes/ColorThemes.dart';
 
+import 'EditPlantDialog.dart';
+
 class PlantScreen extends StatefulWidget {
   final Plant plant;
 
@@ -97,9 +99,9 @@ class _PlantScreenState extends State<PlantScreen> {
                   )),
                   Container(
                     margin: const EdgeInsets.only(right: 16),
-                    child: const IconButton(
-                        onPressed: editPlant,
-                        icon: Icon(
+                    child: IconButton(
+                        onPressed: () => showEditPlantDialog(context, plant),
+                        icon: const Icon(
                           Icons.edit_note_outlined,
                           color: ColorThemes.dark,
                         )),
