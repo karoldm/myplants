@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:myplants/models/Plant.dart';
-
-import 'package:myplants/screens/plant/WeekDayButton.dart';
-import 'DeletePlantDialog.dart';
-
 import 'package:myplants/themes/ColorThemes.dart';
 
+import 'package:myplants/models/Plant.dart';
+
+import 'WeekDayButton.dart';
+import 'DeletePlantDialog.dart';
 import 'EditPlantDialog.dart';
 
 class PlantScreen extends StatefulWidget {
@@ -242,7 +241,5 @@ class _PlantScreenState extends State<PlantScreen> {
         ));
   }
 }
-
-void editPlant() {}
 
 void back() {}

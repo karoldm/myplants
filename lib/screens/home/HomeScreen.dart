@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:myplants/themes/FontThemes.dart';
+import '../../themes/FontThemes.dart';
 import '../../themes/ColorThemes.dart';
 
 import '../../models/PlantWater.dart';
 
+import 'NewPlantDialog.dart';
 import 'PlantWaterCard.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -121,7 +122,9 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
             backgroundColor: ColorThemes.darkGreen,
             elevation: 0,
-            title: const Icon(Icons.abc, color: ColorThemes.light, size: 30),
+            title: Image.asset(
+              'assets/images/logo.png',
+            ),
             actions: [
               Padding(
                 padding: const EdgeInsets.all(14),
@@ -142,11 +145,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: ElevatedButton.styleFrom(
                         shape: const StadiumBorder(),
                         backgroundColor: ColorThemes.grey),
-                    onPressed: newPlant,
+                    onPressed: () => showNewPlantDialog(context),
                     child: const Icon(
                       Icons.add,
                       color: ColorThemes.dark,
-                      size: 12,
+                      size: 20,
                     )),
               )
             ]),
@@ -195,7 +198,5 @@ class _HomeScreenState extends State<HomeScreen> {
         ));
   }
 }
-
-void newPlant() {}
 
 void myPlants() {}
