@@ -132,7 +132,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: ElevatedButton.styleFrom(
                         shape: const StadiumBorder(),
                         backgroundColor: ColorThemes.grey),
-                    onPressed: myPlants,
+                    onPressed: () =>
+                        Navigator.of(context).pushNamed('/myPlants'),
                     child: const Text('Minhas Plantas',
                         style: TextStyle(
                             color: ColorThemes.dark,
@@ -198,5 +199,3 @@ class _HomeScreenState extends State<HomeScreen> {
         ));
   }
 }
-
-void myPlants() {}

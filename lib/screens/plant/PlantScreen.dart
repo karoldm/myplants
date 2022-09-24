@@ -24,6 +24,13 @@ class _PlantScreenState extends State<PlantScreen> {
   _PlantScreenState({required this.plant});
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print(plant.especie);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final MediaQueryData media = MediaQuery.of(context);
 
@@ -35,7 +42,7 @@ class _PlantScreenState extends State<PlantScreen> {
           actions: [
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(14),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -43,8 +50,8 @@ class _PlantScreenState extends State<PlantScreen> {
                         style: ElevatedButton.styleFrom(
                             shape: const StadiumBorder(),
                             backgroundColor: ColorThemes.grey),
-                        onPressed: back,
-                        child: const Icon(Icons.home_outlined,
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: const Icon(Icons.arrow_back,
                             color: ColorThemes.dark, size: 25)),
                     Text(
                       'Informações de ${plant.especie}',

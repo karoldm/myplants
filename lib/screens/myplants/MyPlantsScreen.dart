@@ -103,7 +103,7 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
           actions: [
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(14),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -111,7 +111,8 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
                         style: ElevatedButton.styleFrom(
                             shape: const StadiumBorder(),
                             backgroundColor: ColorThemes.grey),
-                        onPressed: back,
+                        onPressed: () =>
+                            Navigator.of(context).pushNamed('/home'),
                         child: const Icon(Icons.home_outlined,
                             color: ColorThemes.dark, size: 25)),
                     Container(

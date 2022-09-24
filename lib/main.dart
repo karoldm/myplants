@@ -15,16 +15,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  final Plant plant = const Plant(
-      id: 0,
-      especie: 'rosa azul',
-      category: 'rosas',
-      humidity: 2,
-      sun: 3,
-      photoPath: 'assets/images/defaultPlantImage.png',
-      rememberWater: false,
-      daysWater: []);
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -34,10 +24,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: //PlantScreen(plant: plant)
-          //const MyPlantsScreen(),
-          HomeScreen(),
-      //const SplashScreen(),
+      routes: {
+        '/home': (context) => HomeScreen(),
+        '/splash': (context) => const SplashScreen(),
+        '/myPlants': (context) => const MyPlantsScreen(),
+      },
+      initialRoute: '/home',
     );
   }
 }

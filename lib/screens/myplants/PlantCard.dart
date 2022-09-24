@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myplants/screens/plant/PlantScreen.dart';
 
 import '../../models/Plant.dart';
 import '../../themes/ColorThemes.dart';
@@ -11,7 +12,8 @@ class PlantCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: () => toPlant(plant),
+        onTap: () => Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => PlantScreen(plant: plant))),
         child: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
@@ -59,8 +61,4 @@ class PlantCard extends StatelessWidget {
               ]),
         ));
   }
-}
-
-void toPlant(Plant plant) {
-  print(plant.id.toString());
 }
