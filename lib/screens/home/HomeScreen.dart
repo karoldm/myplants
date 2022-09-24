@@ -133,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         shape: const StadiumBorder(),
                         backgroundColor: ColorThemes.grey),
                     onPressed: () =>
-                        Navigator.of(context).pushNamed('/myPlants'),
+                        Navigator.of(context).pushReplacementNamed('/myPlants'),
                     child: const Text('Minhas Plantas',
                         style: TextStyle(
                             color: ColorThemes.dark,

@@ -112,7 +112,7 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
                             shape: const StadiumBorder(),
                             backgroundColor: ColorThemes.grey),
                         onPressed: () =>
-                            Navigator.of(context).pushNamed('/home'),
+                            Navigator.of(context).pushReplacementNamed('/home'),
                         child: const Icon(Icons.home_outlined,
                             color: ColorThemes.dark, size: 25)),
                     Container(
