@@ -16,63 +16,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<dynamic> plantsWater = [
-    PlantWater(
-      watered: false,
-      id: 0,
-      especie: 'rosa branca',
-      category: 'rosas',
-      photoPath: 'assets/images/defaultPlantImage.png',
-    ),
-    PlantWater(
-        watered: true,
-        id: 1,
-        especie: 'rosa vermelha',
-        category: 'rosas',
-        photoPath: 'assets/images/defaultPlantImage.png'),
-    PlantWater(
-        watered: false,
-        id: 2,
-        especie: 'rosa azul',
-        category: 'rosas',
-        photoPath: 'assets/images/defaultPlantImage.png'),
-    PlantWater(
-        watered: false,
-        id: 3,
-        especie: 'rosa amarela',
-        category: 'rosas',
-        photoPath: 'assets/images/defaultPlantImage.png'),
-    PlantWater(
-        watered: false,
-        id: 4,
-        especie: 'rosa amarela',
-        category: 'rosas',
-        photoPath: 'assets/images/defaultPlantImage.png'),
-    PlantWater(
-        watered: false,
-        id: 5,
-        especie: 'rosa amarela',
-        category: 'rosas',
-        photoPath: 'assets/images/defaultPlantImage.png'),
-    PlantWater(
-        watered: false,
-        id: 6,
-        especie: 'rosa amarela',
-        category: 'rosas',
-        photoPath: 'assets/images/defaultPlantImage.png'),
-    PlantWater(
-        watered: false,
-        id: 7,
-        especie: 'rosa amarela',
-        category: 'rosas',
-        photoPath: 'assets/images/defaultPlantImage.png'),
-    PlantWater(
-        watered: false,
-        id: 8,
-        especie: 'rosa amarela',
-        category: 'rosas',
-        photoPath: 'assets/images/defaultPlantImage.png'),
-  ];
+  List<dynamic> plantsWater = [];
 
   List<PlantWater> plantsWaterToDisplay = [];
   List<PlantWater> plantsWateredToDisplay = [];

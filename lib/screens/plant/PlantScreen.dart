@@ -27,7 +27,6 @@ class _PlantScreenState extends State<PlantScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    print(plant.especie);
   }
 
   @override
@@ -149,18 +148,24 @@ class _PlantScreenState extends State<PlantScreen> {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
+                          children: [
                             Icon(
                               Icons.water_drop,
-                              color: Colors.lightBlue,
+                              color: plant.humidity >= 1
+                                  ? Colors.blue
+                                  : Colors.grey,
                             ),
                             Icon(
                               Icons.water_drop,
-                              color: Colors.lightBlue,
+                              color: plant.humidity >= 2
+                                  ? Colors.blue
+                                  : Colors.grey,
                             ),
                             Icon(
                               Icons.water_drop,
-                              color: ColorThemes.grey,
+                              color: plant.humidity == 1
+                                  ? Colors.blue
+                                  : Colors.grey,
                             )
                           ],
                         ),
@@ -180,18 +185,21 @@ class _PlantScreenState extends State<PlantScreen> {
                               fontWeight: FontWeight.w400),
                         ),
                         Row(
-                          children: const [
+                          children: [
                             Icon(
                               Icons.sunny,
-                              color: Colors.yellow,
+                              color:
+                                  plant.sun >= 1 ? Colors.yellow : Colors.grey,
                             ),
                             Icon(
                               Icons.sunny,
-                              color: Colors.yellow,
+                              color:
+                                  plant.sun >= 2 ? Colors.yellow : Colors.grey,
                             ),
                             Icon(
                               Icons.sunny,
-                              color: Colors.yellow,
+                              color:
+                                  plant.sun == 3 ? Colors.yellow : Colors.grey,
                             )
                           ],
                         ),

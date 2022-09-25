@@ -2,13 +2,13 @@ enum Days { sunday, monday, tuesday, wednesday, thursday, friday, saturday }
 
 class Plant {
   int? id;
-  final String especie;
-  final String category;
-  final int humidity;
-  final int sun;
-  final String photoPath;
-  final bool rememberWater;
-  final List<Days> daysWater;
+  String especie;
+  String category;
+  int humidity;
+  int sun;
+  String photoPath;
+  bool rememberWater;
+  List<Days> daysWater;
   bool watered;
 
   Plant(
