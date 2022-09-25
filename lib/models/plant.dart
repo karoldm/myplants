@@ -9,30 +9,47 @@ class Plant {
   final String photoPath;
   final bool rememberWater;
   final List<Days> daysWater;
+  bool watered;
 
-  const Plant({
-    required this.id,
-    required this.especie,
-    required this.category,
-    required this.humidity,
-    required this.sun,
-    required this.photoPath,
-    required this.rememberWater,
-    required this.daysWater,
-  });
+  Plant(
+      {required this.id,
+      required this.especie,
+      required this.category,
+      required this.humidity,
+      required this.sun,
+      required this.photoPath,
+      required this.rememberWater,
+      required this.daysWater,
+      required this.watered});
 
   Map<String, dynamic> toMap() {
-    Map<String, dynamic> map = {};
+    return {
+      'id': id,
+      'especie': especie,
+      'category': category,
+      'humidity': humidity,
+      'sun': sun,
+      'photoPath': photoPath,
+      'rememberWater': rememberWater,
+      'daysWater': daysWater,
+      'waterded': watered
+    };
+  }
 
-    map['id'] = id;
-    map['especie'] = especie;
-    map['category'] = category;
-    map['humidity'] = humidity;
-    map['sun'] = sun;
-    map['photoPath'] = photoPath;
-    map['rememberWater'] = rememberWater;
-    map['daysWater'] = daysWater.toString();
+  void setWatered(bool watered) {
+    this.watered = watered;
+  }
 
-    return map;
+  static Plant fromMap(Map<String, dynamic> map) {
+    return Plant(
+        id: map['id'],
+        especie: map['especie'],
+        category: map['category'],
+        humidity: map['humidity'],
+        sun: map['sun'],
+        photoPath: map['photoPath'],
+        rememberWater: map['rememberWater'] == 1 ? true : false,
+        daysWater: map['daysWater'],
+        watered: map['watered'] == 1 ? true : false);
   }
 }

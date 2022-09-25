@@ -17,7 +17,7 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
   late MediaQueryData media = MediaQuery.of(context);
 
   List<Plant> plants = [
-    const Plant(
+    Plant(
         id: 0,
         especie: 'rosa vermelha',
         category: 'rosas',
@@ -25,8 +25,9 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
         sun: 3,
         humidity: 2,
         rememberWater: false,
-        daysWater: []),
-    const Plant(
+        daysWater: [],
+        watered: false),
+    Plant(
         id: 2,
         especie: 'rosa azul',
         category: 'rosas',
@@ -34,8 +35,9 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
         sun: 3,
         humidity: 2,
         rememberWater: false,
-        daysWater: []),
-    const Plant(
+        daysWater: [],
+        watered: false),
+    Plant(
         id: 3,
         especie: 'rosa azul',
         category: 'rosas',
@@ -43,8 +45,9 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
         sun: 3,
         humidity: 2,
         rememberWater: false,
-        daysWater: []),
-    const Plant(
+        daysWater: [],
+        watered: false),
+    Plant(
         id: 4,
         especie: 'rosa azul',
         category: 'rosas',
@@ -52,8 +55,9 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
         sun: 3,
         humidity: 2,
         rememberWater: false,
-        daysWater: []),
-    const Plant(
+        daysWater: [],
+        watered: false),
+    Plant(
         id: 5,
         especie: 'rosa azul',
         category: 'rosas',
@@ -61,8 +65,9 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
         sun: 3,
         humidity: 2,
         rememberWater: false,
-        daysWater: []),
-    const Plant(
+        daysWater: [],
+        watered: false),
+    Plant(
         id: 6,
         especie: 'rosa azul',
         category: 'rosas',
@@ -70,7 +75,8 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
         sun: 3,
         humidity: 2,
         rememberWater: false,
-        daysWater: []),
+        daysWater: [],
+        watered: false),
   ];
 
   List<Plant> plantsToDisplay = [];
