@@ -5,23 +5,20 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
 class DB_plants {
-  final String _databaseName = 'myplants';
-  final int _version = 1;
-  final String _tableName = 'plant';
+  static final String _databaseName = 'myplants';
+  static final int _version = 1;
+  static final String _tableName = 'plant';
 
   static Database? _database;
 
   DB_plants._privateConstructor();
   static final DB_plants instance = DB_plants._privateConstructor();
 
-  Future<Database?> getDatabase() async {
-    if (_database != null) return _database;
-
-    _database = await _initDatabase();
-    return _database;
+  static void openDB() async {
+    if (_database == null) _database = await _initDatabase();
   }
 
-  Future<Database> _initDatabase() async {
+  static Future<Database> _initDatabase() async {
     String databasePath = await getDatabasesPath();
     String path = join(databasePath, _databaseName);
     return await openDatabase(path, version: _version,
@@ -39,16 +36,16 @@ class DB_plants {
     });
   }
 
-  void close() async {
+  static void close() async {
     await _database!.close();
   }
 
-  Future<int> insert(Plant plant) async {
+  static Future<int> insert(Plant plant) async {
     int id = await _database!.insert(_tableName, plant.toMap());
     return id;
   }
 
-  Future<List<Plant>> getAll() async {
+  static Future<List<Plant>> getAll() async {
     List result = await _database!.query(_tableName);
     List<Plant> plants = [];
 
@@ -58,7 +55,7 @@ class DB_plants {
     return plants;
   }
 
-  Future<Plant?> getOne(int id) async {
+  static Future<Plant?> getOne(int id) async {
     List result =
         await _database!.rawQuery("SELECT * FROM $_tableName WHERE id = $id");
 
@@ -66,12 +63,12 @@ class DB_plants {
     return null;
   }
 
-  Future<int> adit(Plant plant) async {
+  static Future<int> edit(Plant plant) async {
     return await _database!.update(_tableName, plant.toMap(),
         where: "id = ?", whereArgs: [plant.id]);
   }
 
-  Future<int> delete(int id) async {
+  static Future<int> delete(int id) async {
     return await _database!.rawDelete("DELETE FROM $_tableName WHERE id = $id");
   }
 }

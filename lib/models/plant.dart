@@ -1,7 +1,7 @@
 enum Days { sunday, monday, tuesday, wednesday, thursday, friday, saturday }
 
 class Plant {
-  final int? id;
+  int? id;
   final String especie;
   final String category;
   final int humidity;
@@ -12,7 +12,7 @@ class Plant {
   bool watered;
 
   Plant(
-      {required this.id,
+      {this.id,
       required this.especie,
       required this.category,
       required this.humidity,
@@ -24,7 +24,6 @@ class Plant {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'especie': especie,
       'category': category,
       'humidity': humidity,

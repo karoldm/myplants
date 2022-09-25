@@ -47,5 +47,12 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+
+	<key>NSPhotoLibraryUsageDescription</key>
+  <string>Upload images for plant image</string>
+  <key>NSCameraUsageDescription</key>
+  <string>Upload image from camera for plant image</string>
+  <key>NSMicrophoneUsageDescription</key>
+  <string></string>
 </dict>
 </plist>

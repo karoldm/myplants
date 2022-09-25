@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:myplants/models/Plant.dart';
-import 'package:myplants/screens/plant/PlantScreen.dart';
-
-import 'package:myplants/themes/ColorThemes.dart';
 
 import 'package:myplants/screens/home/HomeScreen.dart';
 import 'package:myplants/screens/myplants/MyPlantsScreen.dart';
 import 'package:myplants/screens/splash/SplashScreen.dart';
+import 'package:myplants/services/db_plants.dart';
 
 void main() {
+  DB_plants.openDB();
   runApp(const MyApp());
 }
 
