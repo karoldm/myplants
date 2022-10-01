@@ -8,13 +8,14 @@ import 'package:myplants/services/db_plants.dart';
 
 import '../../themes/ColorThemes.dart';
 
-Future<void> showNewPlantDialog(BuildContext context) async {
+Future<void> showNewPlantDialog(
+    BuildContext context, VoidCallback callback) async {
   TextEditingController especieController = TextEditingController();
   TextEditingController categoryController = TextEditingController();
 
   String image = '';
 
-  ImagePicker picker = new ImagePicker();
+  ImagePicker picker = ImagePicker();
 
   MediaQueryData media = MediaQuery.of(context);
 
@@ -158,6 +159,7 @@ Future<void> showNewPlantDialog(BuildContext context) async {
                                           watered: false);
                                       int id = await DB_plants.insert(plant);
                                       plant.id = id;
+                                      callback();
                                     }
                                   },
                                   style: ElevatedButton.styleFrom(

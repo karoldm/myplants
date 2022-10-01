@@ -5,7 +5,8 @@ import '../../models/Plant.dart';
 
 import '../../themes/ColorThemes.dart';
 
-void showDeletePlantDialog(BuildContext context, Plant plant) {
+void showDeletePlantDialog(
+    BuildContext context, Plant plant, VoidCallback callback) {
   showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -25,6 +26,7 @@ void showDeletePlantDialog(BuildContext context, Plant plant) {
                 ElevatedButton(
                   onPressed: () {
                     DB_plants.delete(plant.id!);
+                    callback();
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: ColorThemes.red,

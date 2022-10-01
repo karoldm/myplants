@@ -1,13 +1,16 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+
 import 'package:image_picker/image_picker.dart';
+
 import 'package:myplants/services/db_plants.dart';
 
 import '../../models/Plant.dart';
 
 import '../../themes/ColorThemes.dart';
 
-void showEditPlantDialog(BuildContext context, Plant plant) {
+void showEditPlantDialog(
+    BuildContext context, Plant plant, VoidCallback callback) {
   TextEditingController especieController = TextEditingController();
   TextEditingController categoryController = TextEditingController();
 
@@ -74,34 +77,30 @@ void showEditPlantDialog(BuildContext context, Plant plant) {
                             height: 25,
                           ),
                           TextField(
-                              style: const TextStyle(fontSize: 16),
-                              decoration: InputDecoration(
-                                  contentPadding:
-                                      const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                  hintText: plant.especie,
-                                  hintStyle: const TextStyle(fontSize: 16),
-                                  border: const OutlineInputBorder(),
-                                  focusColor: ColorThemes.dark),
-                              controller: especieController,
-                              onChanged: (value) {
-                                print(value);
-                              }),
+                            style: const TextStyle(fontSize: 16),
+                            decoration: InputDecoration(
+                                contentPadding:
+                                    const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                hintText: plant.especie,
+                                hintStyle: const TextStyle(fontSize: 16),
+                                border: const OutlineInputBorder(),
+                                focusColor: ColorThemes.dark),
+                            controller: especieController,
+                          ),
                           const SizedBox(
                             height: 15,
                           ),
                           TextField(
-                              style: const TextStyle(fontSize: 16),
-                              decoration: InputDecoration(
-                                  contentPadding:
-                                      const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                  hintText: plant.category,
-                                  hintStyle: const TextStyle(fontSize: 16),
-                                  border: const OutlineInputBorder(),
-                                  focusColor: ColorThemes.dark),
-                              controller: categoryController,
-                              onChanged: (value) {
-                                print(value);
-                              }),
+                            style: const TextStyle(fontSize: 16),
+                            decoration: InputDecoration(
+                                contentPadding:
+                                    const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                hintText: plant.category,
+                                hintStyle: const TextStyle(fontSize: 16),
+                                border: const OutlineInputBorder(),
+                                focusColor: ColorThemes.dark),
+                            controller: categoryController,
+                          ),
                           const SizedBox(
                             height: 25,
                           ),
@@ -146,6 +145,7 @@ void showEditPlantDialog(BuildContext context, Plant plant) {
                                         rememberWater: plant.rememberWater,
                                         daysWater: plant.daysWater,
                                         watered: plant.watered));
+                                    callback();
                                   },
                                   style: ElevatedButton.styleFrom(
                                       backgroundColor: ColorThemes.mediumGreen,

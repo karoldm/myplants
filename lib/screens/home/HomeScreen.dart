@@ -42,23 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
     MediaQueryData media = MediaQuery.of(context);
 
     void reorderList(int id, bool checked) {
-      setState(() {
-        //Plant pChecked;
-
-        //inserindo planta regada no final
-        // if (checked) {
-        //   pChecked = plantsWaterToDisplay.firstWhere((p) => p.id == id);
-        //   plantsWaterToDisplay.removeWhere((p) => p.id == id);
-        //   plantsWateredToDisplay.add(pChecked);
-        // }
-
-        // //inserindo planta não regada no inicio
-        // else {
-        //   pChecked = plantsWateredToDisplay.firstWhere((p) => p.id == id);
-        //   plantsWateredToDisplay.removeWhere((p) => p.id == id);
-        //   plantsWaterToDisplay.add(pChecked);
-        // }
-      });
+      setState(() {});
     }
 
     return FutureBuilder(
@@ -91,7 +75,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: ElevatedButton.styleFrom(
                             shape: const StadiumBorder(),
                             backgroundColor: ColorThemes.grey),
-                        onPressed: () => showNewPlantDialog(context),
+                        onPressed: () => showNewPlantDialog(context, () {
+                              Navigator.pop(context);
+                              setState(() => {});
+                            }),
                         child: const Icon(
                           Icons.add,
                           color: ColorThemes.dark,

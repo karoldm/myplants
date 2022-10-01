@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
 import 'package:myplants/services/db_plants.dart';
 
 import 'package:myplants/themes/ColorThemes.dart';
@@ -21,7 +23,7 @@ class PlantScreen extends StatefulWidget {
 }
 
 class _PlantScreenState extends State<PlantScreen> {
-  final Plant plant;
+  Plant plant;
   bool rememberWater = false;
 
   _PlantScreenState({required this.plant});
@@ -77,7 +79,11 @@ class _PlantScreenState extends State<PlantScreen> {
                     ),
                     IconButton(
                       padding: const EdgeInsets.all(0),
-                      onPressed: () => showDeletePlantDialog(context, plant),
+                      onPressed: () =>
+                          showDeletePlantDialog(context, plant, () {
+                        Navigator.pushReplacementNamed(context, '/home');
+                        setState(() => {});
+                      }),
                       icon: const Icon(Icons.delete,
                           color: ColorThemes.darkGrey, size: 25),
                     )
@@ -127,7 +133,11 @@ class _PlantScreenState extends State<PlantScreen> {
                   Container(
                     margin: const EdgeInsets.only(right: 16),
                     child: IconButton(
-                        onPressed: () => showEditPlantDialog(context, plant),
+                        onPressed: () =>
+                            showEditPlantDialog(context, plant, () {
+                              Navigator.pop(context);
+                              setState(() => {});
+                            }),
                         icon: const Icon(
                           Icons.edit_note_outlined,
                           color: ColorThemes.dark,
@@ -326,5 +336,3 @@ class _PlantScreenState extends State<PlantScreen> {
         ));
   }
 }
-
-void back() {}
