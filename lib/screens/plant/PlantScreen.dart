@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:myplants/themes/ColorThemes.dart';
@@ -22,12 +23,6 @@ class _PlantScreenState extends State<PlantScreen> {
   bool rememberWater = false;
 
   _PlantScreenState({required this.plant});
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,8 +75,14 @@ class _PlantScreenState extends State<PlantScreen> {
                 margin: const EdgeInsets.only(top: 30, bottom: 15),
                 decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(8)),
-                    image: DecorationImage(
-                        image: AssetImage(plant.photoPath), fit: BoxFit.cover),
+                    image:
+                        plant.photoPath == 'assets/images/defaultPlantImage.png'
+                            ? DecorationImage(
+                                image: AssetImage(plant.photoPath),
+                                fit: BoxFit.cover)
+                            : DecorationImage(
+                                image: FileImage(File(plant.photoPath)),
+                                fit: BoxFit.cover),
                     color: ColorThemes.grey),
               ),
               Row(
@@ -212,7 +213,7 @@ class _PlantScreenState extends State<PlantScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          'Lmebrar de regar',
+                          'Lembrar de regar',
                           style: TextStyle(
                               color: ColorThemes.light,
                               fontSize: 14,

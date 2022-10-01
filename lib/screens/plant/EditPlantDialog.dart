@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 
 import '../../models/Plant.dart';
@@ -35,10 +36,16 @@ void showEditPlantDialog(BuildContext context, Plant plant) {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(8)),
                           color: ColorThemes.grey,
-                          image: DecorationImage(
-                              image: AssetImage(plant.photoPath),
-                              opacity: 0.2,
-                              fit: BoxFit.cover)),
+                          image: plant.photoPath ==
+                                  'assets/images/defaultPlantImage.png'
+                              ? DecorationImage(
+                                  image: AssetImage(plant.photoPath),
+                                  fit: BoxFit.cover,
+                                  opacity: 0.2)
+                              : DecorationImage(
+                                  image: FileImage(File(plant.photoPath)),
+                                  fit: BoxFit.cover,
+                                  opacity: 0.2)),
                       child: IconButton(
                           onPressed: () {
                             print('image pressed');
