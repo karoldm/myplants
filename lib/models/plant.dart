@@ -33,10 +33,6 @@ class Plant {
     };
   }
 
-  void setWatered(bool watered) {
-    this.watered = watered;
-  }
-
   static Plant fromMap(Map<String, dynamic> map) {
     return Plant(
         id: map['id'],

@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:myplants/services/db_plants.dart';
 
 import 'package:myplants/themes/ColorThemes.dart';
 
@@ -23,6 +25,25 @@ class _PlantScreenState extends State<PlantScreen> {
   bool rememberWater = false;
 
   _PlantScreenState({required this.plant});
+
+  void updateDays(String day) {
+    if (plant.daysWater.contains(day)) {
+      plant.daysWater.removeWhere((element) => element == day);
+    } else {
+      plant.daysWater.add(day);
+    }
+
+    DB_plants.edit(Plant(
+        id: plant.id,
+        especie: plant.especie,
+        category: plant.category,
+        humidity: plant.humidity,
+        sun: plant.sun,
+        photoPath: plant.photoPath,
+        rememberWater: plant.rememberWater,
+        daysWater: plant.daysWater,
+        watered: plant.watered));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -147,28 +168,31 @@ class _PlantScreenState extends State<PlantScreen> {
                               fontSize: 14,
                               fontWeight: FontWeight.w400),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Icon(
-                              Icons.water_drop,
-                              color: plant.humidity >= 1
-                                  ? Colors.blue
-                                  : Colors.grey,
-                            ),
-                            Icon(
-                              Icons.water_drop,
-                              color: plant.humidity >= 2
-                                  ? Colors.blue
-                                  : Colors.grey,
-                            ),
-                            Icon(
-                              Icons.water_drop,
-                              color: plant.humidity == 1
-                                  ? Colors.blue
-                                  : Colors.grey,
-                            )
-                          ],
+                        RatingBar.builder(
+                          initialRating: plant.humidity / 1.0,
+                          minRating: 1,
+                          direction: Axis.horizontal,
+                          allowHalfRating: false,
+                          itemCount: 3,
+                          itemSize: 25,
+                          itemPadding:
+                              const EdgeInsets.symmetric(horizontal: 2.0),
+                          itemBuilder: (context, _) => const Icon(
+                            Icons.water_drop,
+                            color: Colors.blue,
+                          ),
+                          onRatingUpdate: (rating) {
+                            DB_plants.edit(Plant(
+                                id: plant.id,
+                                especie: plant.especie,
+                                category: plant.category,
+                                humidity: rating.toInt(),
+                                sun: plant.sun,
+                                photoPath: plant.photoPath,
+                                rememberWater: plant.rememberWater,
+                                daysWater: plant.daysWater,
+                                watered: plant.watered));
+                          },
                         ),
                       ],
                     ),
@@ -185,24 +209,31 @@ class _PlantScreenState extends State<PlantScreen> {
                               fontSize: 14,
                               fontWeight: FontWeight.w400),
                         ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.sunny,
-                              color:
-                                  plant.sun >= 1 ? Colors.yellow : Colors.grey,
-                            ),
-                            Icon(
-                              Icons.sunny,
-                              color:
-                                  plant.sun >= 2 ? Colors.yellow : Colors.grey,
-                            ),
-                            Icon(
-                              Icons.sunny,
-                              color:
-                                  plant.sun == 3 ? Colors.yellow : Colors.grey,
-                            )
-                          ],
+                        RatingBar.builder(
+                          initialRating: plant.humidity / 1.0,
+                          minRating: 1,
+                          direction: Axis.horizontal,
+                          allowHalfRating: false,
+                          itemCount: 3,
+                          itemSize: 25,
+                          itemPadding:
+                              const EdgeInsets.symmetric(horizontal: 2.0),
+                          itemBuilder: (context, _) => const Icon(
+                            Icons.sunny,
+                            color: Colors.yellow,
+                          ),
+                          onRatingUpdate: (rating) {
+                            DB_plants.edit(Plant(
+                                id: plant.id,
+                                especie: plant.especie,
+                                category: plant.category,
+                                humidity: plant.humidity,
+                                sun: rating.toInt(),
+                                photoPath: plant.photoPath,
+                                rememberWater: plant.rememberWater,
+                                daysWater: plant.daysWater,
+                                watered: plant.watered));
+                          },
                         ),
                       ],
                     ),
@@ -226,6 +257,16 @@ class _PlantScreenState extends State<PlantScreen> {
                               setState(() {
                                 rememberWater = value;
                               });
+                              DB_plants.edit(Plant(
+                                  id: plant.id,
+                                  especie: plant.especie,
+                                  category: plant.category,
+                                  humidity: plant.humidity,
+                                  sun: plant.sun,
+                                  photoPath: plant.photoPath,
+                                  rememberWater: value,
+                                  daysWater: plant.daysWater,
+                                  watered: plant.watered));
                             })
                       ],
                     ),
@@ -239,14 +280,42 @@ class _PlantScreenState extends State<PlantScreen> {
                           borderRadius: BorderRadius.all(Radius.circular(8))),
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: const [
-                            WeekDayButton(day: 'S'),
-                            WeekDayButton(day: 'T'),
-                            WeekDayButton(day: 'Q'),
-                            WeekDayButton(day: 'Q'),
-                            WeekDayButton(day: 'S'),
-                            WeekDayButton(day: 'S'),
-                            WeekDayButton(day: 'D'),
+                          children: [
+                            WeekDayButton(
+                              day: 'S',
+                              callback: () => updateDays('segunda'),
+                              initialValue: plant.daysWater.contains('segunda'),
+                            ),
+                            WeekDayButton(
+                              day: 'T',
+                              callback: () => updateDays('terca'),
+                              initialValue: plant.daysWater.contains('terca'),
+                            ),
+                            WeekDayButton(
+                              day: 'Q',
+                              callback: () => updateDays('quarta'),
+                              initialValue: plant.daysWater.contains('quarta'),
+                            ),
+                            WeekDayButton(
+                              day: 'Q',
+                              callback: () => updateDays('quinta'),
+                              initialValue: plant.daysWater.contains('quinta'),
+                            ),
+                            WeekDayButton(
+                              day: 'S',
+                              callback: () => updateDays('sexta'),
+                              initialValue: plant.daysWater.contains('sexta'),
+                            ),
+                            WeekDayButton(
+                              day: 'S',
+                              callback: () => updateDays('sabado'),
+                              initialValue: plant.daysWater.contains('sabado'),
+                            ),
+                            WeekDayButton(
+                              day: 'D',
+                              callback: () => updateDays('domingo'),
+                              initialValue: plant.daysWater.contains('domingo'),
+                            ),
                           ]),
                     )
                   ],

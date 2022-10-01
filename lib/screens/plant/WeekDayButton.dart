@@ -1,22 +1,38 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:myplants/themes/ColorThemes.dart';
 
 class WeekDayButton extends StatefulWidget {
   final String day;
+  bool initialValue;
+  VoidCallback callback;
 
-  const WeekDayButton({super.key, required this.day});
+  WeekDayButton(
+      {super.key,
+      required this.day,
+      required this.callback,
+      required this.initialValue});
 
   @override
-  State<WeekDayButton> createState() => _WeekDayButtonState(day: day);
+  State<WeekDayButton> createState() => _WeekDayButtonState(
+      day: day, callback: callback, initialValue: initialValue);
 }
 
 class _WeekDayButtonState extends State<WeekDayButton> {
   final String day;
+  bool initialValue;
+  VoidCallback callback;
 
   bool selected = false;
 
-  _WeekDayButtonState({required this.day});
+  _WeekDayButtonState(
+      {required this.day, required this.callback, required this.initialValue});
+
+  @override
+  void initState() {
+    selected = initialValue;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +41,7 @@ class _WeekDayButtonState extends State<WeekDayButton> {
         setState(() {
           selected = !selected;
         });
+        callback();
       },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
