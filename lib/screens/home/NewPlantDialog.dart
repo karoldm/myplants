@@ -12,9 +12,9 @@ Future<void> showNewPlantDialog(BuildContext context) async {
   TextEditingController especieController = TextEditingController();
   TextEditingController categoryController = TextEditingController();
 
-  var _image = null;
-  String _especie = '';
-  String _category = '';
+  String image = '';
+  String especie = '';
+  String category = '';
 
   ImagePicker picker = new ImagePicker();
 
@@ -46,9 +46,9 @@ Future<void> showNewPlantDialog(BuildContext context) async {
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(8)),
                                   color: ColorThemes.grey,
-                                  image: _image != null
+                                  image: image.isNotEmpty
                                       ? DecorationImage(
-                                          image: FileImage(_image),
+                                          image: FileImage(File(image)),
                                           opacity: 0.2,
                                           fit: BoxFit.cover)
                                       : const DecorationImage(
@@ -64,7 +64,7 @@ Future<void> showNewPlantDialog(BuildContext context) async {
                                         preferredCameraDevice:
                                             CameraDevice.front);
                                     setState(() {
-                                      _image = File(imagePicked!.path);
+                                      image = imagePicked!.path;
                                     });
                                   },
                                   icon: Icon(
@@ -87,7 +87,7 @@ Future<void> showNewPlantDialog(BuildContext context) async {
                                   focusColor: ColorThemes.dark),
                               controller: especieController,
                               onChanged: (value) {
-                                _especie = value;
+                                especie = value;
                               }),
                           const SizedBox(
                             height: 15,
@@ -103,7 +103,7 @@ Future<void> showNewPlantDialog(BuildContext context) async {
                                   focusColor: ColorThemes.dark),
                               controller: categoryController,
                               onChanged: (value) {
-                                _category = value;
+                                category = value;
                               }),
                           const SizedBox(
                             height: 25,
@@ -134,14 +134,14 @@ Future<void> showNewPlantDialog(BuildContext context) async {
                               Expanded(
                                 child: ElevatedButton(
                                   onPressed: () async {
-                                    if (_especie.isEmpty || _category.isEmpty) {
+                                    if (especie.isEmpty || category.isEmpty) {
                                     } else {
                                       Plant plant = Plant(
-                                          especie: _especie,
-                                          category: _category,
+                                          especie: especie,
+                                          category: category,
                                           humidity: 1,
                                           sun: 1,
-                                          photoPath: _image,
+                                          photoPath: image,
                                           rememberWater: false,
                                           daysWater: [],
                                           watered: false);

@@ -29,9 +29,9 @@ class Plant {
       'humidity': humidity,
       'sun': sun,
       'photoPath': photoPath,
-      'rememberWater': rememberWater,
-      'daysWater': daysWater,
-      'waterded': watered
+      'rememberWater': rememberWater ? 1 : 0,
+      'daysWater': daysWater.toString(),
+      'watered': watered ? 1 : 0,
     };
   }
 

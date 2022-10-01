@@ -43,7 +43,7 @@ class DB_plants {
 
   static Future<int> insert(Plant plant) async {
     int id = await _database!.insert(_tableName, plant.toMap());
-    print('id>>>>>>>>' + id.toString());
+    ;
     return id;
   }
 
