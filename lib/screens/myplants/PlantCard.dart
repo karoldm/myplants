@@ -1,7 +1,10 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+
 import 'package:myplants/screens/plant/PlantScreen.dart';
 
 import '../../models/Plant.dart';
+
 import '../../themes/ColorThemes.dart';
 
 class PlantCard extends StatelessWidget {
@@ -35,9 +38,14 @@ class PlantCard extends StatelessWidget {
                     child: Container(
                   decoration: BoxDecoration(
                       border: Border.all(color: ColorThemes.grey, width: 3),
-                      image: DecorationImage(
-                          image: AssetImage(plant.photoPath),
-                          fit: BoxFit.cover),
+                      image: plant.photoPath ==
+                              'assets/images/defaultPlantImage.png'
+                          ? DecorationImage(
+                              image: AssetImage(plant.photoPath),
+                              fit: BoxFit.cover)
+                          : DecorationImage(
+                              image: FileImage(File(plant.photoPath)),
+                              fit: BoxFit.cover),
                       color: ColorThemes.grey,
                       borderRadius:
                           const BorderRadius.all(Radius.circular(100))),
