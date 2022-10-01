@@ -1,11 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:myplants/services/db_plants.dart';
+
+import '../../models/Plant.dart';
 
 import '../../themes/ColorThemes.dart';
 
-import '../../models/PlantWater.dart';
-
 class PlantWaterCard extends StatefulWidget {
-  PlantWater plant;
+  Plant plant;
   final void Function(int, bool) callback;
 
   PlantWaterCard({super.key, required this.plant, required this.callback});
@@ -16,7 +19,7 @@ class PlantWaterCard extends StatefulWidget {
 }
 
 class _PlantWaterCardState extends State<PlantWaterCard> {
-  PlantWater plant;
+  Plant plant;
   final void Function(int, bool) callback;
 
   _PlantWaterCardState({required this.plant, required this.callback});
@@ -40,10 +43,12 @@ class _PlantWaterCardState extends State<PlantWaterCard> {
             borderRadius: const BorderRadius.all(Radius.circular(8))),
         child: Row(
           children: [
-            Image.asset(
-              plant.photoPath,
-              width: 60,
-            ),
+            plant.photoPath == 'assets/images/deafultPlantImage.png'
+                ? Image.asset('assets/images/deafultPlantImage.png')
+                : Image.file(
+                    File(plant.photoPath),
+                    width: 60,
+                  ),
             const SizedBox(
               width: 10,
             ),
@@ -73,7 +78,16 @@ class _PlantWaterCardState extends State<PlantWaterCard> {
                   activeColor: ColorThemes.darkGreen,
                   value: plant.watered,
                   onChanged: (bool? value) {
-                    plant.setWatered(value!);
+                    DB_plants.edit(Plant(
+                        id: plant.id,
+                        especie: plant.especie,
+                        category: plant.category,
+                        humidity: plant.humidity,
+                        sun: plant.sun,
+                        photoPath: plant.photoPath,
+                        rememberWater: plant.rememberWater,
+                        daysWater: plant.daysWater,
+                        watered: value!));
                     callback(plant.id!, value);
                   }),
             )

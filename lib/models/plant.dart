@@ -1,5 +1,3 @@
-enum Days { sunday, monday, tuesday, wednesday, thursday, friday, saturday }
-
 class Plant {
   int? id;
   String especie;
@@ -8,7 +6,7 @@ class Plant {
   int sun;
   String photoPath;
   bool rememberWater;
-  List<Days> daysWater;
+  List<String> daysWater;
   bool watered;
 
   Plant(
@@ -30,7 +28,7 @@ class Plant {
       'sun': sun,
       'photoPath': photoPath,
       'rememberWater': rememberWater ? 1 : 0,
-      'daysWater': daysWater.toString(),
+      'daysWater': daysWater.join(' '),
       'watered': watered ? 1 : 0,
     };
   }
@@ -48,7 +46,7 @@ class Plant {
         sun: map['sun'],
         photoPath: map['photoPath'],
         rememberWater: map['rememberWater'] == 1 ? true : false,
-        daysWater: map['daysWater'],
+        daysWater: map['daysWater'].split(' '),
         watered: map['watered'] == 1 ? true : false);
   }
 }
