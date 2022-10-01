@@ -14,8 +14,9 @@ class DB_plants {
   DB_plants._privateConstructor();
   static final DB_plants instance = DB_plants._privateConstructor();
 
-  static void openDB() async {
+  static Future<void> openDB() async {
     if (_database == null) _database = await _initDatabase();
+    print('database on');
   }
 
   static Future<Database> _initDatabase() async {
@@ -42,6 +43,7 @@ class DB_plants {
 
   static Future<int> insert(Plant plant) async {
     int id = await _database!.insert(_tableName, plant.toMap());
+    print('id>>>>>>>>' + id.toString());
     return id;
   }
 

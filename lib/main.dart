@@ -6,7 +6,6 @@ import 'package:myplants/screens/splash/SplashScreen.dart';
 import 'package:myplants/services/db_plants.dart';
 
 void main() {
-  DB_plants.openDB();
   runApp(const MyApp());
 }
 

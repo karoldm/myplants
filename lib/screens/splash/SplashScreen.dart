@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:myplants/screens/home/HomeScreen.dart';
 import 'dart:async';
+
+import 'package:myplants/screens/home/HomeScreen.dart';
+import 'package:myplants/services/db_plants.dart';
 
 import 'package:myplants/themes/ColorThemes.dart';
 import 'package:myplants/themes/FontThemes.dart';
@@ -16,6 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    DB_plants.openDB();
     Timer(
         const Duration(seconds: 2),
         () => Navigator.pushReplacement(
