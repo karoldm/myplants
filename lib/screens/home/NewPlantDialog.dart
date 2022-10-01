@@ -13,7 +13,7 @@ Future<void> showNewPlantDialog(
   TextEditingController especieController = TextEditingController();
   TextEditingController categoryController = TextEditingController();
 
-  String image = '';
+  String image = 'assets/images/defaultPlantImage.png';
 
   ImagePicker picker = ImagePicker();
 
@@ -45,14 +45,14 @@ Future<void> showNewPlantDialog(
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(8)),
                                   color: ColorThemes.grey,
-                                  image: image.isNotEmpty
+                                  image: image ==
+                                          'assets/images/defaultPlantImage.png'
                                       ? DecorationImage(
-                                          image: FileImage(File(image)),
+                                          image: AssetImage(image),
                                           opacity: 0.2,
                                           fit: BoxFit.cover)
-                                      : const DecorationImage(
-                                          image: AssetImage(
-                                              'assets/images/defaultPlantImage.png'),
+                                      : DecorationImage(
+                                          image: FileImage(File(image)),
                                           opacity: 0.2,
                                           fit: BoxFit.cover)),
                               child: IconButton(

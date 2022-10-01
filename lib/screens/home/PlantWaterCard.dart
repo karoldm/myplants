@@ -43,11 +43,16 @@ class _PlantWaterCardState extends State<PlantWaterCard> {
             borderRadius: const BorderRadius.all(Radius.circular(8))),
         child: Row(
           children: [
-            plant.photoPath == 'assets/images/deafultPlantImage.png'
-                ? Image.asset('assets/images/deafultPlantImage.png')
+            plant.photoPath == 'assets/images/defaultPlantImage.png'
+                ? Image.asset(
+                    'assets/images/defaultPlantImage.png',
+                    width: 60,
+                    height: 60,
+                  )
                 : Image.file(
                     File(plant.photoPath),
                     width: 60,
+                    height: 60,
                   ),
             const SizedBox(
               width: 10,
