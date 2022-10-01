@@ -81,7 +81,8 @@ class _PlantScreenState extends State<PlantScreen> {
                       padding: const EdgeInsets.all(0),
                       onPressed: () =>
                           showDeletePlantDialog(context, plant, () {
-                        Navigator.pushReplacementNamed(context, '/home');
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, '/home', (route) => false);
                         setState(() => {});
                       }),
                       icon: const Icon(Icons.delete,
