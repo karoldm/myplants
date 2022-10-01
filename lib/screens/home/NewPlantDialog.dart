@@ -13,8 +13,6 @@ Future<void> showNewPlantDialog(BuildContext context) async {
   TextEditingController categoryController = TextEditingController();
 
   String image = '';
-  String especie = '';
-  String category = '';
 
   ImagePicker picker = new ImagePicker();
 
@@ -77,34 +75,30 @@ Future<void> showNewPlantDialog(BuildContext context) async {
                             height: 25,
                           ),
                           TextField(
-                              style: const TextStyle(fontSize: 16),
-                              decoration: const InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                  hintText: 'especie',
-                                  hintStyle: TextStyle(fontSize: 16),
-                                  border: OutlineInputBorder(),
-                                  focusColor: ColorThemes.dark),
-                              controller: especieController,
-                              onChanged: (value) {
-                                especie = value;
-                              }),
+                            style: const TextStyle(fontSize: 16),
+                            decoration: const InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                hintText: 'especie',
+                                hintStyle: TextStyle(fontSize: 16),
+                                border: OutlineInputBorder(),
+                                focusColor: ColorThemes.dark),
+                            controller: especieController,
+                          ),
                           const SizedBox(
                             height: 15,
                           ),
                           TextField(
-                              style: const TextStyle(fontSize: 16),
-                              decoration: const InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                  hintText: 'categoria',
-                                  hintStyle: TextStyle(fontSize: 16),
-                                  border: OutlineInputBorder(),
-                                  focusColor: ColorThemes.dark),
-                              controller: categoryController,
-                              onChanged: (value) {
-                                category = value;
-                              }),
+                            style: const TextStyle(fontSize: 16),
+                            decoration: const InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                hintText: 'categoria',
+                                hintStyle: TextStyle(fontSize: 16),
+                                border: OutlineInputBorder(),
+                                focusColor: ColorThemes.dark),
+                            controller: categoryController,
+                          ),
                           const SizedBox(
                             height: 25,
                           ),
@@ -134,11 +128,28 @@ Future<void> showNewPlantDialog(BuildContext context) async {
                               Expanded(
                                 child: ElevatedButton(
                                   onPressed: () async {
-                                    if (especie.isEmpty || category.isEmpty) {
+                                    if (especieController.text.isEmpty ||
+                                        categoryController.text.isEmpty) {
+                                      showDialog<String>(
+                                        context: context,
+                                        builder: (BuildContext context) =>
+                                            AlertDialog(
+                                          title: const Text('Campos vazios'),
+                                          content: const Text(
+                                              'Por favor preencha todos os campos para continuar!'),
+                                          actions: <Widget>[
+                                            TextButton(
+                                              onPressed: () =>
+                                                  Navigator.pop(context, 'OK'),
+                                              child: const Text('OK'),
+                                            ),
+                                          ],
+                                        ),
+                                      );
                                     } else {
                                       Plant plant = Plant(
-                                          especie: especie,
-                                          category: category,
+                                          especie: especieController.text,
+                                          category: categoryController.text,
                                           humidity: 1,
                                           sun: 1,
                                           photoPath: image,
