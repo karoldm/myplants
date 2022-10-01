@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myplants/services/db_plants.dart';
 
 import '../../models/Plant.dart';
 
@@ -22,7 +23,9 @@ void showDeletePlantDialog(BuildContext context, Plant plant) {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    DB_plants.delete(plant.id!);
+                  },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: ColorThemes.red,
                       elevation: 0,
