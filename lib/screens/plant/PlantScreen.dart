@@ -67,12 +67,12 @@ class _PlantScreenState extends State<PlantScreen> {
                         style: ElevatedButton.styleFrom(
                             shape: const StadiumBorder(),
                             backgroundColor: ColorThemes.grey),
-                        onPressed: () => Navigator.of(context).pop(),
+                        onPressed: () => Navigator.pop(context),
                         child: const Icon(Icons.arrow_back,
                             color: ColorThemes.dark, size: 25)),
-                    Text(
-                      'Informações de ${plant.especie}',
-                      style: const TextStyle(
+                    const Text(
+                      'Informações da planta',
+                      style: TextStyle(
                           color: ColorThemes.light,
                           fontSize: 16,
                           fontWeight: FontWeight.w400),
