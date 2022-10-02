@@ -3,7 +3,7 @@
 
 <div align="left">
 
-<h3 align="left">My plants app <img src="assets/images/logo.png" alt="Logo" width="120" height="120"></h3>
+<h3 align="left">My plants app <img src="assets/images/logo.png" alt="Logo" width="30" height="30"></h3>
 
 <p align="left">
 
