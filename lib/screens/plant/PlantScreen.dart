@@ -67,7 +67,8 @@ class _PlantScreenState extends State<PlantScreen> {
                         style: ElevatedButton.styleFrom(
                             shape: const StadiumBorder(),
                             backgroundColor: ColorThemes.grey),
-                        onPressed: () => Navigator.pop(context),
+                        onPressed: () => Navigator.pushReplacementNamed(
+                            context, '/myPlants'),
                         child: const Icon(Icons.arrow_back,
                             color: ColorThemes.dark, size: 25)),
                     const Text(
@@ -137,7 +138,8 @@ class _PlantScreenState extends State<PlantScreen> {
                         onPressed: () =>
                             showEditPlantDialog(context, plant, () {
                               Navigator.pop(context);
-                              setState(() => {});
+                              DB_plants.edit(plant);
+                              setState(() {});
                             }),
                         icon: const Icon(
                           Icons.edit_note_outlined,

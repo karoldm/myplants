@@ -46,7 +46,7 @@ void showEditPlantDialog(
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(8)),
                                   color: ColorThemes.grey,
-                                  image: plant.photoPath ==
+                                  image: image ==
                                           'assets/images/defaultPlantImage.png'
                                       ? DecorationImage(
                                           image: AssetImage(image),
@@ -130,21 +130,17 @@ void showEditPlantDialog(
                               Expanded(
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    DB_plants.edit(Plant(
-                                        id: plant.id,
-                                        especie: especieController.text.isEmpty
-                                            ? plant.especie
-                                            : especieController.text,
-                                        category:
-                                            categoryController.text.isEmpty
-                                                ? plant.category
-                                                : categoryController.text,
-                                        humidity: plant.humidity,
-                                        sun: plant.sun,
-                                        photoPath: image,
-                                        rememberWater: plant.rememberWater,
-                                        daysWater: plant.daysWater,
-                                        watered: plant.watered));
+                                    setState(() {
+                                      plant.especie =
+                                          especieController.text.isEmpty
+                                              ? plant.especie
+                                              : especieController.text;
+                                      plant.category =
+                                          categoryController.text.isEmpty
+                                              ? plant.category
+                                              : categoryController.text;
+                                      plant.photoPath = image;
+                                    });
                                     callback();
                                   },
                                   style: ElevatedButton.styleFrom(
