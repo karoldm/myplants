@@ -1,19 +1,24 @@
 <a name="readme-top"></a>
+<br />
 
 <div align="center">
 
 <h3 align="left"><img src="assets/images/logo.png" alt="Logo" width="30" height="30"> My plants app</h3>
 
-<p align="center">
+<p align="left">
 
 Flutter app to store information about your plants and remember to water them.
 
 <br />
 
-<a link="https://www.figma.com/file/Knnqcp8DQxTJs8kyI3tHVT/myplants?node-id=216%3A2">
-<h3 align="left"> <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="figma of project" height="30" width="30"/> Figma of project</h3> 
-</a>
-<img src="assets/images/figma.png" alt="figma of project"/>
+<h3 align="left"> <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="figma of project" height="30" width="30"/> 
+<a link = "https://www.figma.com/file/Knnqcp8DQxTJs8kyI3tHVT/myplants?node-id=216%3A2">Figma of project</a></h3> 
+
+<br />
+
+<div backgroundColor="white">
+	<img src="assets/images/figma.png" alt="figma of project"/>
+</div>
 
 </div>
 
@@ -34,6 +39,8 @@ Flutter app to store information about your plants and remember to water them.
 * <a link="[image_picker | Flutter Package (pub.dev)](https://pub.dev/packages/image_picker)">image_picker</a>
 * <a link="[path_provider | Flutter Package (pub.dev)](https://pub.dev/packages/path_provider)">path_provider</a>
 
+
+<!-- GETTING STARTED -->
 
 ###  Getting Started
 
