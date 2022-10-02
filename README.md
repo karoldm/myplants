@@ -1,11 +1,9 @@
 <a name="readme-top"></a>
 <br />
 
-<div align="center">
+<div align="left">
 
-<img src="assets/images/logo.png" alt="Logo" width="120" height="120">
-
-<h2 align="center">My plants app</h2>
+<h3 align="left">My plants app <img src="assets/images/logo.png" alt="Logo" width="120" height="120"></h3>
 
 <p align="left">
 
