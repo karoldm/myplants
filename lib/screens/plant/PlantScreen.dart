@@ -188,16 +188,19 @@ class _PlantScreenState extends State<PlantScreen> {
                           itemSize: 25,
                           itemPadding:
                               const EdgeInsets.symmetric(horizontal: 2.0),
-                          itemBuilder: (context, _) => const Icon(
+                          itemBuilder: (context, __) => const Icon(
                             Icons.water_drop,
                             color: Colors.blue,
                           ),
                           onRatingUpdate: (rating) {
+                            setState(() {
+                              plant.humidity = rating.toInt();
+                            });
                             DB_plants.edit(Plant(
                                 id: plant.id,
                                 especie: plant.especie,
                                 category: plant.category,
-                                humidity: rating.toInt(),
+                                humidity: plant.humidity,
                                 sun: plant.sun,
                                 photoPath: plant.photoPath,
                                 rememberWater: plant.rememberWater,
@@ -221,7 +224,7 @@ class _PlantScreenState extends State<PlantScreen> {
                               fontWeight: FontWeight.w400),
                         ),
                         RatingBar.builder(
-                          initialRating: plant.humidity / 1.0,
+                          initialRating: plant.sun / 1.0,
                           minRating: 1,
                           direction: Axis.horizontal,
                           allowHalfRating: false,
@@ -234,12 +237,15 @@ class _PlantScreenState extends State<PlantScreen> {
                             color: Colors.yellow,
                           ),
                           onRatingUpdate: (rating) {
+                            setState(() {
+                              plant.sun = rating.toInt();
+                            });
                             DB_plants.edit(Plant(
                                 id: plant.id,
                                 especie: plant.especie,
                                 category: plant.category,
                                 humidity: plant.humidity,
-                                sun: rating.toInt(),
+                                sun: plant.sun,
                                 photoPath: plant.photoPath,
                                 rememberWater: plant.rememberWater,
                                 daysWater: plant.daysWater,
@@ -262,12 +268,13 @@ class _PlantScreenState extends State<PlantScreen> {
                               fontWeight: FontWeight.w400),
                         ),
                         Switch(
-                            value: rememberWater,
+                            value: plant.rememberWater,
                             activeColor: ColorThemes.lightGreen,
                             onChanged: (bool value) {
                               setState(() {
-                                rememberWater = value;
+                                plant.rememberWater = value;
                               });
+
                               DB_plants.edit(Plant(
                                   id: plant.id,
                                   especie: plant.especie,
@@ -275,7 +282,7 @@ class _PlantScreenState extends State<PlantScreen> {
                                   humidity: plant.humidity,
                                   sun: plant.sun,
                                   photoPath: plant.photoPath,
-                                  rememberWater: value,
+                                  rememberWater: plant.rememberWater,
                                   daysWater: plant.daysWater,
                                   watered: plant.watered));
                             })
