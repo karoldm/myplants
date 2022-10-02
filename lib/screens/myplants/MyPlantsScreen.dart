@@ -23,10 +23,19 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
   Future<List<Plant>> getPlants() async {
     List<Plant> dbPlants = await DB_plants.getAll();
 
+    plants.clear();
+
     for (Plant p in dbPlants) {
       plants.add(p);
-      plantsToDisplay.add(p);
     }
+
+    //iniciano lista que será exibida
+    if (plantsToDisplay.isEmpty) {
+      for (Plant p in plants) {
+        plantsToDisplay.add(p);
+      }
+    }
+
     return dbPlants;
   }
 
