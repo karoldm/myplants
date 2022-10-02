@@ -24,10 +24,47 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<List<Plant>> getPlants() async {
     List<Plant> dbPlants = await DB_plants.getAll();
 
+    int weekDay = DateTime.now().weekday;
+
+    String today = '';
+
+    switch (weekDay) {
+      case 1:
+        today = 'segunda';
+        break;
+      case 2:
+        today = 'terca';
+        break;
+      case 3:
+        today = 'quarta';
+        break;
+      case 4:
+        today = 'quinta';
+        break;
+      case 5:
+        today = 'sexta';
+        break;
+      case 6:
+        today = 'sabado';
+        break;
+      case 7:
+        today = 'domingo';
+        break;
+    }
+
+    List<Plant> plants = [];
+
+    for (Plant p in dbPlants) {
+      //exibir somente as plantas que foram habilitadas para lembrar de regar
+      if (p.rememberWater && p.daysWater.contains(today)) {
+        plants.add(p);
+      }
+    }
+
     plantsWaterToDisplay = [];
     plantsWateredToDisplay = [];
 
-    for (Plant p in dbPlants) {
+    for (Plant p in plants) {
       if (!p.watered) {
         plantsWaterToDisplay.add(p);
       } else {
