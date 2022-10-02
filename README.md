@@ -3,25 +3,24 @@
 
 <div align="center">
 
-<h3 align="left"><img src="assets/images/logo.png" alt="Logo" width="30" height="30"> My plants app</h3>
+<img src="assets/images/logo.png" alt="Logo" width="120" height="120">
+
+<h2 align="center">My plants app</h2>
 
 <p align="left">
 
 Flutter app to store information about your plants and remember to water them.
 
+<br /> 
+
+### [Figma Project][Figma-url]
+
+<br />
 <br />
 
-<h3 align="left"> <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="figma of project" height="30" width="30"/> 
-<a link = "https://www.figma.com/file/Knnqcp8DQxTJs8kyI3tHVT/myplants?node-id=216%3A2">Figma of project</a></h3> 
+<img src="assets/images/figma.png" alt="figma of project"/>
 
 <br />
-
-<div backgroundColor="white">
-	<img src="assets/images/figma.png" alt="figma of project"/>
-</div>
-
-</div>
-
 <br />
 
 ###  Built With
@@ -33,14 +32,12 @@ Flutter app to store information about your plants and remember to water them.
 <br />
 
 ###  Dependencies
+* [sqflite][Sqflite-url]
+* [flutter_rating_bar][Flutter_rating_bar-url]
+* [image_picker][Image_picker-url]
+* [path_provider][Path_provider-url]
 
-* <a link="[sqflite | Flutter Package (pub.dev)](https://pub.dev/packages/sqflite)">sqflite</a>
-* <a link="[sqflite | Flutter Package (pub.dev)](https://pub.dev/packages/sqflite)">flutter_rating_bar</a>
-* <a link="[image_picker | Flutter Package (pub.dev)](https://pub.dev/packages/image_picker)">image_picker</a>
-* <a link="[path_provider | Flutter Package (pub.dev)](https://pub.dev/packages/path_provider)">path_provider</a>
-
-
-<!-- GETTING STARTED -->
+<br />
 
 ###  Getting Started
 
@@ -87,3 +84,15 @@ flutter run
 [Dart]: https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white
 
 [Dart-url]: https://dart.dev/
+
+[Figma-url]: https://www.figma.com/file/Knnqcp8DQxTJs8kyI3tHVT/myplants?node-id=216%3A2
+
+[Figma]: https://cdn-icons-png.flaticon.com/512/5968/5968705.png
+
+[Path_provider-url]: https://pub.dev/packages/path_provider
+
+[Sqflite-url]: https://pub.dev/packages/sqflite
+
+[Flutter_rating_bar-url]: https://pub.dev/packages/flutter_rating_bar
+
+[Image_picker-url]: https://pub.dev/packages/image_picker
