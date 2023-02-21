@@ -5,8 +5,6 @@ import '../../models/Plant.dart';
 import '../../themes/FontThemes.dart';
 import '../../themes/ColorThemes.dart';
 
-import '../../models/PlantWater.dart';
-
 import 'NewPlantDialog.dart';
 import 'PlantWaterCard.dart';
 
