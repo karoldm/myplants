@@ -31,9 +31,7 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
 
     //iniciano lista que será exibida
     if (plantsToDisplay.isEmpty) {
-      for (Plant p in plants) {
-        plantsToDisplay.add(p);
-      }
+      plantsToDisplay = List.from(plants.reversed);
     }
 
     return dbPlants;
@@ -129,9 +127,7 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
                             themeAZ['background'] = ColorThemes.lightGreen;
                             themeAZ['fontColor'] = ColorThemes.dark;
                             plantsToDisplay.clear();
-                            for (var p in plants) {
-                              plantsToDisplay.add(p);
-                            }
+                            plantsToDisplay = List.from(plants.reversed);
                           });
                         },
                         style: ElevatedButton.styleFrom(
@@ -162,9 +158,7 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
                             themeAZ['fontColor'] = ColorThemes.light;
 
                             plantsToDisplay.clear();
-                            for (var p in plants) {
-                              plantsToDisplay.add(p);
-                            }
+                            plantsToDisplay = List.from(plants.reversed);
 
                             plantsToDisplay.sort(
                                 (p1, p2) => p1.especie.compareTo(p2.especie));
